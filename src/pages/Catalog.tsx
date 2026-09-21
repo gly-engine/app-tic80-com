@@ -53,7 +53,7 @@ export function Card({ cart, image, title, description, author }: CardProp, std:
     return (
         <item id={`cart-${cart}`} style="tic80-cart">
             <node
-                click={() => goToPage('/view', { cart: Number(cart) })}
+                click={() => goToPage('/view', { cart })}
                 focus={() => {
                     setBackgroundColor(Theme.surfaceFocus);
                     setBorderColor(Theme.borderFocus);
@@ -75,7 +75,7 @@ export function Card({ cart, image, title, description, author }: CardProp, std:
 }
 
 export async function CatalogPage(props: CatalogPageProps, std: GlyStd) {
-    const response = await http.get('/play');
+    const response = await http.get('/play/games/top');
     const content = response.text();
     const carts = extractCarts(content);
 

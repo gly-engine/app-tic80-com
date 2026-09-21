@@ -8,7 +8,7 @@ import { extractCartInfos } from "src/app/scraper";
 import { backPage, goToPage } from "src/app/router";
 
 type ViewPageProps = {
-  cart: number;
+  cart: string;
 }
 
 const Button = (props: { label: string, click: () => unknown }, std: GlyStd) => {
@@ -34,7 +34,7 @@ const Button = (props: { label: string, click: () => unknown }, std: GlyStd) => 
 }
 
 export async function ViewPage({ cart }: ViewPageProps, std: GlyStd) {
-  const response = await http.get(`/play?cart=${cart}`);
+  const response = await http.get(cart);
   const content = response.text();
   const info = extractCartInfos(content);
   const hasDescription = info.description.trim().length > 0;
